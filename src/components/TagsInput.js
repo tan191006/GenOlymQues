@@ -1,32 +1,29 @@
-
-export function TagsInput ({tags, setTags}) {
-
-    function handleKeyDown(e){
+export function TagsInput({ tags, setTags }) {
+    function handleKeyDown(e) {
         // If user did not press enter key, return
-        if(e.key !== 'Enter') return
+        if (e.key !== 'Enter') return;
         // Get the value of the input
-        const value = e.target.value
+        const value = e.target.value;
         // If the value is empty, return
-        if(!value.trim()) return
+        if (!value.trim()) return;
         // Add the value to the tags array
-        if(tags.includes(value)) {
-            alert("This tag was exist!")
-        }
-        else {
-            setTags([...tags, value])
+        if (tags.includes(value)) {
+            alert('This tag was exist!');
+        } else {
+            setTags([...tags, value]);
         }
         // Clear the input
-        e.target.value = ''
+        e.target.value = '';
     }
 
     return (
         <>
-            <input 
+            <input
                 onKeyDown={handleKeyDown}
                 type="text"
                 placeholder="Nhập chủ đề ở đây..."
-                className="inline-block text-xl bg-transparent placeholder:text-white text-primary px-3 mt-2 outline-none placeholder-gray-600 placeholder:font-bold font-roboto-slab"
+                className="mt-2 inline-block bg-transparent px-3 font-roboto-slab text-xl text-primary placeholder-gray-600 outline-none placeholder:font-bold placeholder:text-white"
             />
         </>
-    )
+    );
 }
