@@ -137,7 +137,8 @@ export default function Home() {
         <Result part="Part 2" data={part2} />
         <Result part="Part 3" data={part3} />
         <Result part="Part 4" data={part4} />
-        <div className="fixed bottom-0 right-0 flex px-10 py-5">
+        <div className="fixed bottom-0 right-0 flex px-10 py-5 items-center">
+
 
             <Button onClick={() => {
                 window.scrollBy(0, window.innerHeight - 100)

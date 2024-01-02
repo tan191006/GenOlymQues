@@ -4,9 +4,9 @@ export function QnAShow ({ question, answer, topic, type, index }) {
 
     return (
         <div className={"flex py-5 mb-5 border-t-2 border-b-2 border-gray-500 font-roboto-slab font-bold"}>
-            <div className={"flex w-1/2 px-2 border-r-2 border-black items-center"}>
+            <div className={"flex w-1/2 px-2 border-r-2 border-white items-center"}>
                 <div className={"flex w-4/5"}>
-                    <span className={"pr-1"}>{index + 1}, </span>{question}
+                    <span className={"pr-1 text-primary"}>{index + 1}, </span>{question}
                 </div>
                 {type && <div className={"rounded border-2 border-primary flex items-center justify-center px-3 ml-3 h-10"}>{type}</div>}
             </div>
