@@ -2,9 +2,9 @@
 import { useState } from "react"
 import { Button } from "../Button"
 import { Tag } from "../Tag"
-import {RandomButton} from "@/components/RandomButton";
 import Image from "next/image";
 import Img from "../../../public/image.png"
+import { FaRandom } from "react-icons/fa";
 export function TopicChoseForPart2 () {
 
     const [tags, setTags] = useState(["HTML", "CSS", "JS"]);
@@ -28,17 +28,15 @@ export function TopicChoseForPart2 () {
     }
 
     return (
-        <section id={"topic-chose-part-2"} className="h-screen w-full flex justify-center items-center">
+        <section id={"topic-chose-part-2"} className="h-screen w-full flex justify-center items-center ">
 
             <div className="w-1/2 flex flex-col items-start overflow-hidden">
 
-                <h2 className="text-2xl font-bold mb-2 font-roboto-slab">2, Chọn chủ đề cho phần thi Vượt chướng ngại vật</h2>
+                <h2 className="text-2xl font-bold mb-2 font-roboto-slab text-white">2, Chọn chủ đề cho phần thi Vượt chướng ngại vật</h2>
 
-                <div className="w-full mt-3 ml-4 flex overflow-auto">
+                <div className="w-full mt-3 ml-4 flex overflow-auto items-center">
 
-                    <div onClick={() => {handleRandom()}} className="flex items-center justify-center">
-                        <RandomButton />
-                    </div>
+                    <Button className={"mr-3"} onClick={handleRandom}><FaRandom /></Button>
 
                     {tags.map((e, index) => {
                         return (
@@ -51,15 +49,12 @@ export function TopicChoseForPart2 () {
 
                 </div>
 
-                <div className="ml-4 mt-2 font-bold font-roboto-slab">Chủ đề được chọn: {topicChosen}</div>
+                <div className="ml-4 mt-2 font-bold font-roboto-slab text-white">Chủ đề được chọn: {topicChosen}</div>
 
-                <a href={"#result"}>
-                    <Button
-                        value="Generate"
-                        className="ml-4"
-                    />
-                </a>
-
+                <Button
+                    value="Generate"
+                    className="ml-4"
+                />
 
             </div>
 
