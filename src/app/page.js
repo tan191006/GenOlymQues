@@ -138,8 +138,15 @@ export default function Home() {
         <Result part="Part 3" data={part3} />
         <Result part="Part 4" data={part4} />
         <div className="fixed bottom-0 right-0 flex px-10 py-5">
-            <Button className={""} ><FaRegArrowAltCircleDown /></Button>
-            <Button className={""} ><FaRegArrowAltCircleUp /></Button>
+
+            <Button onClick={() => {
+                window.scrollTo(0, window.innerHeight)
+            }}><FaRegArrowAltCircleDown /></Button>
+
+            <Button onClick={() => {
+                window.scrollTo(0, -window.innerHeight)
+            }}><FaRegArrowAltCircleUp /></Button>
+
         </div>
     </div>
   )

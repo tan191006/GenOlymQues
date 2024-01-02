@@ -32,7 +32,7 @@ export function TopicChoseForPart2 () {
 
             <div className="w-1/2 flex flex-col items-start overflow-hidden">
 
-                <h2 className="text-2xl font-bold mb-2 font-roboto-slab text-white">2, Chọn chủ đề cho phần thi Vượt chướng ngại vật</h2>
+                <h2 className="text-2xl font-bold mb-2 font-roboto-slab text-primary">2, Chọn chủ đề cho phần thi Vượt chướng ngại vật</h2>
 
                 <div className="w-full mt-3 ml-4 flex overflow-auto items-center">
 
