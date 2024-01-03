@@ -1,10 +1,16 @@
 import { CiSquareRemove } from 'react-icons/ci';
 import { motion } from 'framer-motion';
 
-export function Tag({ tag, bg, tags, setTags }) {
+export function Tag({ tag, bg, tags, setTags, input, setIsInput }) {
     const handleClick = (event) => {
         event.stopPropagation();
-        setTags([...tags].filter((e) => e !== tag));
+        setTags(() => {
+            // set IsInput false to rerender TopicChoseForPart2
+            if (input) {
+                setIsInput(false);
+            }
+            return tags.filter((e) => e !== tag);
+        });
     };
 
     return (

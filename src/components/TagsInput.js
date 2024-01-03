@@ -1,4 +1,4 @@
-export function TagsInput({ tags, setTags }) {
+export function TagsInput({ tags, setTags, setIsInput }) {
     function handleKeyDown(e) {
         // If user did not press enter key, return
         if (e.key !== 'Enter') return;
@@ -10,7 +10,11 @@ export function TagsInput({ tags, setTags }) {
         if (tags.includes(value)) {
             alert('This tag was exist!');
         } else {
-            setTags([...tags, value]);
+            setTags(() => {
+                console.log("reset")
+                setIsInput(false)
+                return [...tags, value]
+            });
         }
         // Clear the input
         e.target.value = '';

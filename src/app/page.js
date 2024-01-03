@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from 'react-icons/fa';
 import { TopicChose } from '@/components/sections/TopicChose';
 import { TopicChoseForPart2 } from '@/components/sections/TopicChoseForPart2';
@@ -147,14 +148,30 @@ export default function Home() {
         ],
     };
 
+    // input tags
+    const [tags, setTags] = useState([]);
+    // input tags set Done
+    const [isInput, setIsInput] = useState(false);
+
     return (
         <div className="relative px-40 ">
-            <TopicChose />
-            <TopicChoseForPart2 />
-            <Result part="Part 1" data={data.part1} />
-            <Result part="Part 2" data={data.part2} />
-            <Result part="Part 3" data={data.part3} />
-            <Result part="Part 4" data={data.part4} />
+            <TopicChose
+                tags={tags}
+                setTags={setTags}
+                isInput={isInput}
+                setIsInput={setIsInput}
+            />
+            {isInput && (
+                <TopicChoseForPart2
+                    dataPart1={data.part1}
+                    tags={tags}
+                    setTags={setTags}
+                />
+            )}
+            {data.part1 && <Result part="Part 1" data={data.part1} />}
+            {data.part2 && <Result part="Part 2" data={data.part2} />}
+            {data.part3 && <Result part="Part 3" data={data.part3} />}
+            {data.part4 && <Result part="Part 4" data={data.part4} />}
             <div className="fixed bottom-0 right-0 flex items-center px-10 py-5">
                 <Button
                     onClick={() => {

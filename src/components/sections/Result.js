@@ -25,6 +25,7 @@ export function Result({ part, data }) {
                 {data.map((e, index) => {
                     return (
                         <QnAShow
+                            key={index}
                             question={e.question}
                             answer={e.answer}
                             topic={e.topic}

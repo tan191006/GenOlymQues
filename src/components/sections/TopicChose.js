@@ -7,19 +7,19 @@ import { loadSlim } from 'tsparticles-slim'; // loads tsparticles-slim
 import { useCallback, useMemo } from 'react';
 import { Button } from '../Button';
 
-export function TopicChose() {
-    const [tags, setTags] = useState([]);
+export function TopicChose({ tags, setTags, isInput, setIsInput }) {
 
-    const [rcmTags, setRcmTags] = useState(['CSS', 'JS']);
+    const [rcmTags, setRcmTags] = useState([]);
 
     function handleTagClick(tagValue) {
         if (tags.includes(tagValue)) {
-            alert('This tag was added!');
+            alert('Chủ đề này đã được thêm!');
         } else {
             setTags([...tags, tagValue]);
         }
     }
 
+    // Particles background ------------------------------------
     const options = useMemo(() => {
         return {
             background: {
@@ -70,10 +70,12 @@ export function TopicChose() {
     const particlesInit = useCallback((engine) => {
         loadSlim(engine);
     }, []);
+    // Particles background --------------------------------------
+
+    
 
     return (
         <section
-            id={'topic-chose'}
             className="z-7 flex h-screen w-full items-center justify-center"
         >
             <div className="flex w-[800px] flex-col items-start overflow-hidden rounded-lg p-20">
@@ -82,24 +84,27 @@ export function TopicChose() {
                 </h2>
 
                 <div className="ml-4 w-full border-b-2 py-2">
-                    {tags.map((e) => {
+                    {tags.map((e, index) => {
                         return (
                             <Tag
+                                key={index}
                                 tag={e}
                                 bg={'bg-yellow-400'}
                                 tags={tags}
                                 setTags={setTags}
+                                input
+                                setIsInput={setIsInput}
                             />
                         );
                     })}
-                    <TagsInput tags={tags} setTags={setTags} />
+                    <TagsInput tags={tags} setTags={setTags} setIsInput={setIsInput} />
                 </div>
                 <div className="ml-5 pt-2 font-roboto-slab font-medium text-gray-400">
                     Enter để thêm mới chủ đề
                 </div>
 
                 {/* List recommend tags */}
-                <div className="ml-4 mt-3 flex w-full overflow-auto">
+                {rcmTags && <div className="ml-4 mt-3 flex w-full overflow-auto">
                     {rcmTags.map((e, index) => {
                         return (
                             <div key={index} onClick={() => handleTagClick(e)}>
@@ -112,15 +117,18 @@ export function TopicChose() {
                             </div>
                         );
                     })}
-                </div>
+                </div>}
 
                 <Button
                     className={'ml-4'}
                     value={'OK'}
                     onClick={() => {
                         if (tags.length) {
-                            window.scrollTo(0, 700);
-                        } else {
+                            setIsInput(true)
+                            setTimeout(() => {window.scrollTo(0, window.innerHeight - 100)}, 100)
+                           
+                        }
+                        else {
                             alert('Bạn hãy thêm chủ đề đã nhé!');
                         }
                     }}
