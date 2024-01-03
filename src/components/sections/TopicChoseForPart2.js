@@ -15,7 +15,7 @@ export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
 
         const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
 
-        setTopicChosen(tags[randomNum]);
+        setTopicFP2(tags[randomNum]);
     }
 
     function handleChose(e) {
