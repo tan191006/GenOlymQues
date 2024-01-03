@@ -5,10 +5,8 @@ import { Tag } from '../Tag';
 import Image from 'next/image';
 import Img from '../../../public/image.png';
 import { FaRandom } from 'react-icons/fa';
-export function TopicChoseForPart2({ tags, dataPart1 }) {
+export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
     const [tagsChosen, setTagsChosen] = useState([...tags]);
-
-    const [topicChosen, setTopicChosen] = useState('');
 
     function handleRandom() {
         const min = 0;
@@ -21,7 +19,7 @@ export function TopicChoseForPart2({ tags, dataPart1 }) {
     }
 
     function handleChose(e) {
-        setTopicChosen(e);
+        setTopicFP2(e);
     }
 
     return (
@@ -56,14 +54,14 @@ export function TopicChoseForPart2({ tags, dataPart1 }) {
                 </div>
 
                 <div className="ml-4 mt-2 font-roboto-slab font-bold text-white">
-                    Chủ đề được chọn: {topicChosen}
+                    Chủ đề được chọn: {topicFP2}
                 </div>
 
                 <Button
                     value="Generate"
                     className="ml-4"
                     onClick={() => {
-                        if (!topicChosen) {
+                        if (!topicFP2) {
                             alert(
                                 'Hãy chọn chủ đề cho phần thi Vượt chướng ngại vật trước nhé!'
                             );
