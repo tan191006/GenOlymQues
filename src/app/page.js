@@ -38,41 +38,6 @@ export default function Home() {
                 answer: 'Lorem lorem',
                 topic: 'HTML',
             },
-            {
-                id: 5,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                id: 6,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                id: 7,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                id: 8,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                id: 9,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
         ],
         part2: [
             {
@@ -216,7 +181,8 @@ export default function Home() {
                         <FaRegArrowAltCircleUp />
                     </Button>
                 </div>
-                <Button className={"ml-5"} onClick={exportData}>Download</Button>
+                
+                {Object.keys(data).length && <Button className={"ml-5"} onClick={exportData}>Download</Button>}
             </div>
 
         </div>
