@@ -8,14 +8,14 @@ body {
     padding: 0;
   }
 
-
+/* 
   ::-webkit-scrollbar {
     height: 5px;
     width: 8px;
     border-radius: 10px;
     background: #facc15;
-  }
-  
+  } */
+/*   
   ::-webkit-scrollbar-thumb {
     background-color: black;
 
@@ -24,7 +24,7 @@ body {
   
   ::-webkit-scrollbar-corner {
     background: #15803d;
-  }
+  } */
   
   html {
     scroll-snap-type: y mandatory;

@@ -25,7 +25,7 @@ export function TagsInput ({tags, setTags}) {
                 onKeyDown={handleKeyDown}
                 type="text"
                 placeholder="Nhập chủ đề ở đây..."
-                className="inline-block bg-yellow-500 px-3 mt-2 outline-none placeholder-gray-600 placeholder:font-bold font-roboto-slab"
+                className="inline-block text-xl bg-transparent placeholder:text-white text-primary px-3 mt-2 outline-none placeholder-gray-600 placeholder:font-bold font-roboto-slab"
             />
         </>
     )

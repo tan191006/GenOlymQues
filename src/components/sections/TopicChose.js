@@ -1,10 +1,11 @@
 "use client"
 import { useState } from "react"
-import { Button } from "../Button"
 import { Tag } from "../Tag"
 import { TagsInput } from "../TagsInput"
-import Image from "next/image";
-import Img from "../../../public/image.png";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim"; // loads tsparticles-slim
+import { useCallback, useMemo } from "react";
+import { Button } from "../Button";
 
 export function TopicChose () {
 
@@ -20,27 +21,75 @@ export function TopicChose () {
         else {
             setTags([...tags, tagValue])
         }
-
     }
 
-    return (
-        <section id={"topic-chose"} className="h-screen w-full flex justify-center items-center">
+  const options = useMemo(() => {
+    return {
+      background: {
+        color: "#121212", // this sets a background color for the canvas
+      },
+      fullScreen: {
+        enable: true, // enabling this will make the canvas fill the entire screen, it's enabled by default
+        zIndex: -1, // this is the z-index value used when the fullScreen is enabled, it's 0 by default
+      },
+      interactivity: {
+        events: {
+          onHover: {
+            enable: true, // enables the hover event
+            mode: "repulse", // make the particles run away from the cursor
+          },
+        },
+        modes: {
+          push: {
+            quantity: 10, // number of particles to add on click
+          },
+          repulse: {
+            distance: 100, // distance of the particles from the cursor
+          },
+        },
+      },
+      particles: {
+        number: {
+            value: 100,
+        },
+        links: {
+          enable: true, // enabling this will make particles linked together
+          distance: 150, // maximum distance for linking the particles
+        },
+        move: {
+          enable: true, // enabling this will make particles move in the canvas
+          speed: { min: 1, max: 3 }, // using a range in speed value will make particles move in a random speed between min/max values, each particles have its own value, it won't change in time by default
+        },
+        opacity: {
+          value: { min: 0.3, max: 0.7 }, // using a different opacity, to have some semitransparent effects
+        },
+        size: {
+          value: { min: 1, max: 1 }, // let's randomize the particles size a bit
+        },
+      },
+    };
+  }, []);
 
-            <div className="w-1/2 flex flex-col items-start overflow-hidden">
+  const particlesInit = useCallback((engine) => {
+    loadSlim(engine);
+  }, []);
+
+    return (
+        <section id={"topic-chose"} className="z-7 h-screen w-full flex justify-center items-center">
+
+            <div className="w-[800px] p-20 rounded-lg flex flex-col items-start overflow-hidden">
                 
-                <h2 className="text-2xl font-bold mb-2 font-roboto-slab">1, Đầu tiên, hãy chọn chủ đề bạn muốn nhé</h2>
+                <h2 className="text-3xl font-bold mb-2 font-roboto-slab text-primary">1, Đầu tiên, hãy chọn chủ đề bạn muốn nhé</h2>
 
                 <div className="w-full border-b-2 ml-4 py-2">
-
                     {tags.map((e) => {
                         return (
                             <Tag tag={e} bg={"bg-yellow-400"} tags={tags} setTags={setTags} />
                         )
                     })}
-
                     <TagsInput tags={tags} setTags={setTags} />
-
                 </div>
+                <div className="text-gray-400 ml-5 pt-2 font-roboto-slab font-medium">Enter để thêm mới chủ đề</div>
 
                 {/* List recommend tags */}
                 <div className="w-full mt-3 ml-4 flex overflow-auto">
@@ -53,19 +102,16 @@ export function TopicChose () {
                     })}
                 </div>
 
-                <a href={"#topic-chose-part-2"}>
-                    <Button
-                        value="Next"
-                        className="ml-4"
-                    />
-                </a>
-
+                <Button className={"ml-4"} value={"OK"} onClick={() => {
+                    if(tags.length) {
+                        window.scrollTo(0, 700)
+                    }
+                    else {
+                        alert("Bạn hãy thêm chủ đề đã nhé!")
+                    }
+                }} />
             </div>
-
-            <div className="h-screen w-2/5 flex justify-center items-center">
-                <Image src={Img} alt={"image"} />
-            </div>
-
+            <Particles id={"tsparticles"} init={particlesInit} options={options} />
         </section>
     )
 }

@@ -13,7 +13,7 @@ export function Tag ({tag, bg, tags, setTags}) {
     return (
 
         <motion.div
-            className={bg + " pl-3 pr-1 py-1 mr-2 rounded border-2 border-black text-sm cursor-pointer inline-block font-roboto-slab"}
+            className={bg + " pl-3 pr-1 py-1 mr-2 rounded border-2 border-black text-lg cursor-pointer inline-block font-roboto-slab"}
             initial={{ scale: 0.7 }}
             animate={{ scale: 1 }}
             transition={{

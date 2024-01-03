@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         'roboto-slab': ['Roboto Slab', 'sans-serif']
       },
+      colors: {
+        'primary': "#facc15"
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
