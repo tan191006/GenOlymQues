@@ -1,129 +1,132 @@
 'use client';
 import { useState } from 'react';
 import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from 'react-icons/fa';
-import { TopicChose } from '@/components/sections/TopicChose';
-import { TopicChoseForPart2 } from '@/components/sections/TopicChoseForPart2';
-import { Result } from '@/components/sections/Result';
-import { Button } from '@/components/Button';
+import {
+    Result,
+    TopicChose,
+    TopicChoseForPart2
+} from "@/components/sections"
+import { Button } from '@/components/common/index';
+
 const XLSX = require("xlsx");
 
+const data = {
+    part1: [
+        {
+            id: 1,
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            id: 2,
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            id: 3,
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            id: 4,
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+    ],
+    part2: [
+        {
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            question:
+                'What is the difference between RAM and ROM in a computer system?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            question:
+                'What is the difference between RAM and ROM in a computer system?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+    ],
+    part3: [
+        {
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+            type: '30',
+        },
+        {
+            question:
+                'What is the difference between RAM and ROM in a computer system?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+            type: '20',
+        },
+        {
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+            type: '30',
+        },
+        {
+            question:
+                'What is the difference between RAM and ROM in a computer system?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+            type: '20',
+        },
+    ],
+    part4: [
+        {
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            question:
+                'What is the difference between RAM and ROM in a computer system?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+        {
+            question:
+                'What is the difference between RAM and ROM in a computer system?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+    ],
+};
+
 export default function Home() {
-    const data = {
-        part1: [
-            {
-                id: 1,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                id: 2,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                id: 3,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                id: 4,
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-        ],
-        part2: [
-            {
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                question:
-                    'What is the difference between RAM and ROM in a computer system?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                question:
-                    'What is the difference between RAM and ROM in a computer system?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-        ],
-        part3: [
-            {
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-                type: '30',
-            },
-            {
-                question:
-                    'What is the difference between RAM and ROM in a computer system?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-                type: '20',
-            },
-            {
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-                type: '30',
-            },
-            {
-                question:
-                    'What is the difference between RAM and ROM in a computer system?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-                type: '20',
-            },
-        ],
-        part4: [
-            {
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                question:
-                    'What is the difference between RAM and ROM in a computer system?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                question:
-                    'What is the role of a firewall in computer security?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-            {
-                question:
-                    'What is the difference between RAM and ROM in a computer system?',
-                answer: 'Lorem lorem',
-                topic: 'HTML',
-            },
-        ],
-    };
-
-
+    
     //export data to excel
     const generateWorksheet = (data) => {
         const ws = XLSX.utils.json_to_sheet(data)

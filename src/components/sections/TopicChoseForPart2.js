@@ -1,17 +1,16 @@
 'use client';
 import { useState } from 'react';
-import { Button } from '../Button';
-import { Tag } from '../Tag';
+import { Button, Tag } from '@/components/common/index';
+import { FaRandom } from 'react-icons/fa';
+import { TbReload } from 'react-icons/tb';
 import Image from 'next/image';
 import Img from '../../../public/image.png';
-import { FaRandom } from 'react-icons/fa';
-import { TbReload } from "react-icons/tb";
-export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
+
+const TopicChoseForPart2 = ({ tags, dataPart1, topicFP2, setTopicFP2 }) => {
     const [tagsChosen, setTagsChosen] = useState([...tags]);
 
     function handleRandom() {
-
-        console.log(tagsChosen)
+        console.log(tagsChosen);
 
         const min = 0;
 
@@ -34,10 +33,14 @@ export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
                 </h2>
 
                 <div className="ml-3 flex w-full items-center overflow-auto">
-
-                    <Button className={'ml-3'} onClick={() => {
-                        setTagsChosen([...tags])
-                    }}><TbReload /></Button>
+                    <Button
+                        className={'ml-3'}
+                        onClick={() => {
+                            setTagsChosen([...tags]);
+                        }}
+                    >
+                        <TbReload />
+                    </Button>
 
                     <Button className={'ml-1 mr-3'} onClick={handleRandom}>
                         <FaRandom />
@@ -74,8 +77,7 @@ export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
                             alert(
                                 'Hãy chọn chủ đề cho phần thi Vượt chướng ngại vật trước nhé!'
                             );
-                        }
-                        else if (dataPart1) {
+                        } else if (dataPart1) {
                             scrollBy(0, window.innerHeight - 100);
                         }
                     }}
@@ -87,4 +89,6 @@ export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
             </div>
         </section>
     );
-}
+};
+
+export default TopicChoseForPart2;

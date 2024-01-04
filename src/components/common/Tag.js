@@ -1,7 +1,7 @@
 import { CiSquareRemove } from 'react-icons/ci';
 import { motion } from 'framer-motion';
 
-export function Tag({ tag, bg, tags, setTags, input, setIsInput }) {
+const Tag = ({ tag, bg, tags, setTags, input, setIsInput }) => {
     const handleClick = (event) => {
         event.stopPropagation();
         setTags(() => {
@@ -36,3 +36,5 @@ export function Tag({ tag, bg, tags, setTags, input, setIsInput }) {
         </motion.div>
     );
 }
+
+export default Tag;

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export function Button({ href, onClick, className, value, children }) {
+const Button = ({ href, onClick, className, value, children }) => {
     let Component = 'button';
 
     const props = {};
@@ -28,3 +28,5 @@ export function Button({ href, onClick, className, value, children }) {
         </motion.div>
     );
 }
+
+export default Button;
