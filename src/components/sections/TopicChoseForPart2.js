@@ -5,17 +5,21 @@ import { Tag } from '../Tag';
 import Image from 'next/image';
 import Img from '../../../public/image.png';
 import { FaRandom } from 'react-icons/fa';
+import { TbReload } from "react-icons/tb";
 export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
     const [tagsChosen, setTagsChosen] = useState([...tags]);
 
     function handleRandom() {
+
+        console.log(tagsChosen)
+
         const min = 0;
 
         const max = tagsChosen.length - 1;
 
         const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
 
-        setTopicFP2(tags[randomNum]);
+        setTopicFP2(tagsChosen[randomNum]);
     }
 
     function handleChose(e) {
@@ -30,7 +34,12 @@ export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
                 </h2>
 
                 <div className="ml-3 flex w-full items-center overflow-auto">
-                    <Button className={'mx-3'} onClick={handleRandom}>
+
+                    <Button className={'ml-3'} onClick={() => {
+                        setTagsChosen([...tags])
+                    }}><TbReload /></Button>
+
+                    <Button className={'ml-1 mr-3'} onClick={handleRandom}>
                         <FaRandom />
                     </Button>
 
@@ -65,7 +74,8 @@ export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
                             alert(
                                 'Hãy chọn chủ đề cho phần thi Vượt chướng ngại vật trước nhé!'
                             );
-                        } else if (dataPart1) {
+                        }
+                        else if (dataPart1) {
                             scrollBy(0, window.innerHeight - 100);
                         }
                     }}
