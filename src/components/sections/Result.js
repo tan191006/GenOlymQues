@@ -1,5 +1,6 @@
 import { QnAShow } from '@/components/QnAShow';
 import { Button } from '@/components/Button';
+import { GrFormNextLink } from "react-icons/gr";
 
 export function Result({ part, data }) {
     return (
@@ -34,6 +35,12 @@ export function Result({ part, data }) {
                         />
                     );
                 })}
+            </div>
+            <div className="w-full flex justify-end">
+
+                {part !== "Part 4" && <Button className={"mx-5 flex items-center justify-between"} onClick={() => {
+                    window.scrollBy(0, window.innerHeight - 100)
+                }}>Next <GrFormNextLink /></Button>}
             </div>
         </section>
     );
