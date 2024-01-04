@@ -1,7 +1,7 @@
 import { CiSquareRemove } from 'react-icons/ci';
 import { motion } from 'framer-motion';
 
-const Tag = ({ tag, bg, tags, setTags, input, setIsInput }) => {
+const Tag = ({ tagValue, bg, tags, setTags, input, setIsInput, onClick }) => {
     const handleClick = (event) => {
         event.stopPropagation();
         setTags(() => {
@@ -9,7 +9,7 @@ const Tag = ({ tag, bg, tags, setTags, input, setIsInput }) => {
             if (input) {
                 setIsInput(false);
             }
-            return tags.filter((e) => e !== tag);
+            return tags.filter((e) => e !== tagValue);
         });
     };
 
@@ -26,9 +26,10 @@ const Tag = ({ tag, bg, tags, setTags, input, setIsInput }) => {
                 stiffness: 260,
                 damping: 20,
             }}
+            onClick={onClick}
         >
             <div className="flex items-center">
-                {tag}
+                {tagValue}
                 <button onClick={handleClick} className="pl-2 text-xl">
                     <CiSquareRemove />
                 </button>

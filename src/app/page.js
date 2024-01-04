@@ -2,12 +2,12 @@
 import { useState } from 'react';
 import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from 'react-icons/fa';
 import {
+    PartSelection,
     Result,
     TopicChose,
     TopicChoseForPart2
 } from "@/components/sections"
 import { Button } from '@/components/common/index';
-
 const XLSX = require("xlsx");
 
 const data = {
@@ -143,25 +143,30 @@ export default function Home() {
     }
 
     // input tags
-    const [tags, setTags] = useState([]);
+    const [inputtedTags, setInputtedTags] = useState([]);
     // input tags set Done
     const [isInput, setIsInput] = useState(false);
     // part 2 topic
     const [topicFP2, setTopicFP2] = useState('');
+    // select part to generate
+    const [selectedPart, setSelectedPart] = useState([])
 
     return (
         <div className="relative px-40 ">
             <TopicChose
-                tags={tags}
-                setTags={setTags}
+                inputtedTags={inputtedTags}
+                setInputtedTags={setInputtedTags}
                 isInput={isInput}
                 setIsInput={setIsInput}
             />
             {isInput && (
+                <PartSelection selectedPart={selectedPart} setSelectedPart={setSelectedPart} />
+            )}
+            {isInput && selectedPart.includes("Vượt chướng ngại vật") && (
                 <TopicChoseForPart2
                     dataPart1={data.part1}
-                    tags={tags}
-                    setTags={setTags}
+                    inputtedTags={inputtedTags}
+                    setInputtedTags={setInputtedTags}
                     topicFP2={topicFP2}
                     setTopicFP2={setTopicFP2}
                 />
@@ -189,7 +194,7 @@ export default function Home() {
                     </Button>
                 </div>
                 
-                {Object.keys(data).length && <Button className={"ml-5"} onClick={exportData}>Download</Button>}
+                {Object.keys(data).length && <Button className={"ml-5"} onClick={exportData}>Tải xuống</Button>}
             </div>
 
         </div>
