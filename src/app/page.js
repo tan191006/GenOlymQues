@@ -143,6 +143,8 @@ export default function Home() {
     const [tags, setTags] = useState([]);
     // input tags set Done
     const [isInput, setIsInput] = useState(false);
+    // part 2 topic
+    const [topicFP2, setTopicFP2] = useState('');
 
     return (
         <div className="relative px-40 ">
@@ -157,10 +159,12 @@ export default function Home() {
                     dataPart1={data.part1}
                     tags={tags}
                     setTags={setTags}
+                    topicFP2={topicFP2}
+                    setTopicFP2={setTopicFP2}
                 />
             )}
             {data.part1 && <Result part="Part 1" data={data.part1} />}
-            {data.part2 && <Result part="Part 2" data={data.part2} />}
+            {data.part2 && <Result part={`Part 2: ${topicFP2}`} data={data.part2} />}
             {data.part3 && <Result part="Part 3" data={data.part3} />}
             {data.part4 && <Result part="Part 4" data={data.part4} />}
             <div className="fixed bottom-0 right-0 left-0 flex justify-between items-center px-10 py-5">

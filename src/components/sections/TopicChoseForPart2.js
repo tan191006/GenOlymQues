@@ -5,23 +5,25 @@ import { Tag } from '../Tag';
 import Image from 'next/image';
 import Img from '../../../public/image.png';
 import { FaRandom } from 'react-icons/fa';
-export function TopicChoseForPart2({ tags, dataPart1 }) {
+import { TbReload } from "react-icons/tb";
+export function TopicChoseForPart2({ tags, dataPart1, topicFP2, setTopicFP2 }) {
     const [tagsChosen, setTagsChosen] = useState([...tags]);
 
-    const [topicChosen, setTopicChosen] = useState('');
-
     function handleRandom() {
+
+        console.log(tagsChosen)
+
         const min = 0;
 
         const max = tagsChosen.length - 1;
 
         const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
 
-        setTopicChosen(tags[randomNum]);
+        setTopicFP2(tagsChosen[randomNum]);
     }
 
     function handleChose(e) {
-        setTopicChosen(e);
+        setTopicFP2(e);
     }
 
     return (
@@ -32,7 +34,12 @@ export function TopicChoseForPart2({ tags, dataPart1 }) {
                 </h2>
 
                 <div className="ml-3 flex w-full items-center overflow-auto">
-                    <Button className={'mx-3'} onClick={handleRandom}>
+
+                    <Button className={'ml-3'} onClick={() => {
+                        setTagsChosen([...tags])
+                    }}><TbReload /></Button>
+
+                    <Button className={'ml-1 mr-3'} onClick={handleRandom}>
                         <FaRandom />
                     </Button>
 
@@ -56,18 +63,19 @@ export function TopicChoseForPart2({ tags, dataPart1 }) {
                 </div>
 
                 <div className="ml-4 mt-2 font-roboto-slab font-bold text-white">
-                    Chủ đề được chọn: {topicChosen}
+                    Chủ đề được chọn: {topicFP2}
                 </div>
 
                 <Button
                     value="Generate"
                     className="ml-4"
                     onClick={() => {
-                        if (!topicChosen) {
+                        if (!topicFP2) {
                             alert(
                                 'Hãy chọn chủ đề cho phần thi Vượt chướng ngại vật trước nhé!'
                             );
-                        } else if (dataPart1) {
+                        }
+                        else if (dataPart1) {
                             scrollBy(0, window.innerHeight - 100);
                         }
                     }}
