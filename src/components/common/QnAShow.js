@@ -1,6 +1,6 @@
 import { IoReloadOutline } from 'react-icons/io5';
 
-export function QnAShow({ question, answer, topic, type, index }) {
+const QnAShow = ({ question, answer, topic, type, index }) => {
     return (
         <div
             className={
@@ -47,3 +47,5 @@ export function QnAShow({ question, answer, topic, type, index }) {
         </div>
     );
 }
+
+export default QnAShow;

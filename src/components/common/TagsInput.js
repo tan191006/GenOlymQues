@@ -1,4 +1,4 @@
-export function TagsInput({ tags, setTags, setIsInput }) {
+const TagsInput = ({ tags, setTags, setIsInput }) => {
     function handleKeyDown(e) {
         // If user did not press enter key, return
         if (e.key !== 'Enter') return;
@@ -31,3 +31,5 @@ export function TagsInput({ tags, setTags, setIsInput }) {
         </>
     );
 }
+
+export default TagsInput;

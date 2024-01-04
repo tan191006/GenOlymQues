@@ -1,13 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { Tag } from '../Tag';
-import { TagsInput } from '../TagsInput';
-import Particles from 'react-tsparticles';
+import { Tag, TagsInput, Button } from '../common/index';
 import { loadSlim } from 'tsparticles-slim'; // loads tsparticles-slim
 import { useCallback, useMemo } from 'react';
-import { Button } from '../Button';
+import Particles from 'react-tsparticles';
 
-export function TopicChose({ tags, setTags, isInput, setIsInput }) {
+const TopicChose = ({ tags, setTags, isInput, setIsInput }) => {
 
     const [rcmTags, setRcmTags] = useState([]);
 
@@ -142,3 +140,6 @@ export function TopicChose({ tags, setTags, isInput, setIsInput }) {
         </section>
     );
 }
+
+
+export default TopicChose;
