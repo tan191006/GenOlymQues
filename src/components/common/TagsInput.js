@@ -1,4 +1,4 @@
-const TagsInput = ({ tags, setTags, setIsInput }) => {
+const TagsInput = ({ inputtedTags, setInputtedTags, setIsInput }) => {
     function handleKeyDown(e) {
         // If user did not press enter key, return
         if (e.key !== 'Enter') return;
@@ -7,13 +7,13 @@ const TagsInput = ({ tags, setTags, setIsInput }) => {
         // If the value is empty, return
         if (!value.trim()) return;
         // Add the value to the tags array
-        if (tags.includes(value)) {
+        if (inputtedTags.includes(value)) {
             alert('This tag was exist!');
         } else {
-            setTags(() => {
+            setInputtedTags(() => {
                 console.log("reset")
                 setIsInput(false)
-                return [...tags, value]
+                return [...inputtedTags, value]
             });
         }
         // Clear the input

@@ -6,8 +6,8 @@ import { TbReload } from 'react-icons/tb';
 import Image from 'next/image';
 import Img from '../../../public/image.png';
 
-const TopicChoseForPart2 = ({ tags, dataPart1, topicFP2, setTopicFP2 }) => {
-    const [tagsChosen, setTagsChosen] = useState([...tags]);
+const TopicChoseForPart2 = ({ inputtedTags, dataPart1, topicFP2, setTopicFP2 }) => {
+    const [tagsChosen, setTagsChosen] = useState([...inputtedTags]);
 
     function handleRandom() {
         console.log(tagsChosen);
@@ -36,7 +36,7 @@ const TopicChoseForPart2 = ({ tags, dataPart1, topicFP2, setTopicFP2 }) => {
                     <Button
                         className={'ml-3'}
                         onClick={() => {
-                            setTagsChosen([...tags]);
+                            setTagsChosen([...inputtedTags]);
                         }}
                     >
                         <TbReload />
@@ -56,7 +56,7 @@ const TopicChoseForPart2 = ({ tags, dataPart1, topicFP2, setTopicFP2 }) => {
                             >
                                 <Tag
                                     bg={'bg-white'}
-                                    tag={e}
+                                    tagValue={e}
                                     tags={tagsChosen}
                                     setTags={setTagsChosen}
                                 />
@@ -65,13 +65,13 @@ const TopicChoseForPart2 = ({ tags, dataPart1, topicFP2, setTopicFP2 }) => {
                     })}
                 </div>
 
-                <div className="ml-4 mt-2 font-roboto-slab font-bold text-white">
+                <div className="ml-6 mt-2 font-roboto-slab font-bold text-white">
                     Chủ đề được chọn: {topicFP2}
                 </div>
 
                 <Button
-                    value="Generate"
-                    className="ml-4"
+                    value="Tiếp tục"
+                    className="ml-6"
                     onClick={() => {
                         if (!topicFP2) {
                             alert(

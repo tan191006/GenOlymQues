@@ -5,15 +5,15 @@ import { loadSlim } from 'tsparticles-slim'; // loads tsparticles-slim
 import { useCallback, useMemo } from 'react';
 import Particles from 'react-tsparticles';
 
-const TopicChose = ({ tags, setTags, isInput, setIsInput }) => {
+const TopicChose = ({ inputtedTags, setInputtedTags, isInput, setIsInput }) => {
 
     const [rcmTags, setRcmTags] = useState([]);
 
     function handleTagClick(tagValue) {
-        if (tags.includes(tagValue)) {
+        if (inputtedTags.includes(tagValue)) {
             alert('Chủ đề này đã được thêm!');
         } else {
-            setTags([...tags, tagValue]);
+            setInputtedTags([...inputtedTags, tagValue]);
         }
     }
 
@@ -82,20 +82,20 @@ const TopicChose = ({ tags, setTags, isInput, setIsInput }) => {
                 </h2>
 
                 <div className="ml-4 w-full border-b-2 py-2">
-                    {tags.map((e, index) => {
+                    {inputtedTags.map((e, index) => {
                         return (
                             <Tag
                                 key={index}
-                                tag={e}
+                                tagValue={e}
                                 bg={'bg-yellow-400'}
-                                tags={tags}
-                                setTags={setTags}
+                                inputtedTags={inputtedTags}
+                                setInputtedTags={setInputtedTags}
                                 input
                                 setIsInput={setIsInput}
                             />
                         );
                     })}
-                    <TagsInput tags={tags} setTags={setTags} setIsInput={setIsInput} />
+                    <TagsInput inputtedTags={inputtedTags} setInputtedTags={setInputtedTags} setIsInput={setIsInput} />
                 </div>
                 <div className="ml-5 pt-2 font-roboto-slab font-medium text-gray-400">
                     Enter để thêm mới chủ đề
@@ -107,10 +107,10 @@ const TopicChose = ({ tags, setTags, isInput, setIsInput }) => {
                         return (
                             <div key={index} onClick={() => handleTagClick(e)}>
                                 <Tag
-                                    tag={e}
+                                    tagValue={e}
                                     bg={'bg-white'}
                                     tags={rcmTags}
-                                    setTags={setRcmTags}
+                                    setInputtedTags={setRcmTags}
                                 />
                             </div>
                         );
@@ -119,9 +119,9 @@ const TopicChose = ({ tags, setTags, isInput, setIsInput }) => {
 
                 <Button
                     className={'ml-4'}
-                    value={'OK'}
+                    value={'Tiếp theo'}
                     onClick={() => {
-                        if (tags.length) {
+                        if (inputtedTags.length) {
                             setIsInput(true)
                             setTimeout(() => {window.scrollTo(0, window.innerHeight - 100)}, 100)
                            
