@@ -5,9 +5,10 @@ export async function POST (request){
 	const body = await request.json();
 	const { topic: topics = [], round = '' } = body;
 
+	const openAIResponse = await genQuestion(topics, round);
 	const res = {
 		topics,
-		questions: await genQuestion(topics, round),
+		...openAIResponse,
 	};
 
 	return new Response(JSON.stringify(res), {

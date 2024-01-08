@@ -200,7 +200,6 @@ export default function Home() {
         }
 
         // set data
-        console.log(newData);
         setData(newData);
     }
 

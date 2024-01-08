@@ -41,27 +41,29 @@ Hãy tạo ra đủ 3 câu hỏi và đáp án thuộc lĩnh vực bạn đang x
 
 Sau đó, hãy trả về kết quả ở dạng JSON Format (chỉ cần trả về JSON, không cần trả về các thông tin khác) theo ví dụ mẫu sau:
 '''
-[
-    {
-        "id": 1,
-        "question": <câu hỏi 1>,
-        "answer": <đáp án 1>
-        "topic": <chủ đề tương ứng từ input>
-    },
-    {
-        "id": 2,
-        "question": <câu hỏi 2>,
-        "answer": <đáp án 2>
-        "topic": <chủ đề tương ứng từ input>
-    },
-    {
-        "id": 3,
-        "question": <câu hỏi 3>,
-        "answer": <đáp án 3>
-        "topic": <chủ đề tương ứng từ input>
-    },
-    ...
-]
+{
+    "questions": [
+        {
+            "id": 1,
+            "question": <câu hỏi 1>,
+            "answer": <đáp án 1>
+            "topic": <chủ đề tương ứng từ input>
+        },
+        {
+            "id": 2,
+            "question": <câu hỏi 2>,
+            "answer": <đáp án 2>
+            "topic": <chủ đề tương ứng từ input>
+        },
+        {
+            "id": 3,
+            "question": <câu hỏi 3>,
+            "answer": <đáp án 3>
+            "topic": <chủ đề tương ứng từ input>
+        },
+        ...
+    ]
+}
 '''
 Lưu ý: 
 - Bạn không cần trình bày chi tiết các bước, hãy xử lý và trả về kết quả JSON cuối cùng.
