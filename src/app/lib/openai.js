@@ -32,5 +32,11 @@ export const genQuestion = async (topics, round) => {
 	});
 
 	const responseText = chatCompletion.choices[0].message.content;
-	return responseText;
+
+	// process response to get json data
+	const firstOpenBraceIndex = responseText.indexOf('{');
+	const lastCloseBraceIndex = responseText.lastIndexOf('}');
+
+	const responseJson = responseText.substring(firstOpenBraceIndex, lastCloseBraceIndex + 1);
+	return JSON.parse(responseJson);
 };
