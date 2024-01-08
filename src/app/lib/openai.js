@@ -28,7 +28,8 @@ export const genQuestion = async (topics, round) => {
 			role: 'user',
 			content: prompt,
 		}],
-		model: 'gpt-3.5-turbo',
+		model: 'gpt-4',
+		temperature: 1,
 	});
 
 	const responseText = chatCompletion.choices[0].message.content;
