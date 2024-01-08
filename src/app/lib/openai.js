@@ -32,7 +32,6 @@ export const genQuestion = async (topics, round) => {
 	});
 
 	const responseText = chatCompletion.choices[0].message.content;
-	console.log(responseText);
 
 	// process response to get json data
 	const firstOpenBraceIndex = responseText.indexOf('[');

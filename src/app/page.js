@@ -143,8 +143,7 @@ const data = {
     ],
 };
 
-export default function Home() {
-    
+export default function Home() {  
     //export data to excel
     const generateWorksheet = (data) => {
         const ws = XLSX.utils.json_to_sheet(data)
@@ -169,6 +168,10 @@ export default function Home() {
     // select part to generate
     const [selectedPart, setSelectedPart] = useState([])
 
+    const getQuestion = async () => {
+        console.log(inputtedTags, selectedPart)
+    }
+
     return (
         <div className="relative px-40 ">
             <TopicChose
@@ -178,7 +181,7 @@ export default function Home() {
                 setIsInput={setIsInput}
             />
             {isInput && (
-                <PartSelection selectedPart={selectedPart} setSelectedPart={setSelectedPart} />
+                <PartSelection selectedPart={selectedPart} setSelectedPart={setSelectedPart} getQuestion={getQuestion} />
             )}
             {isInput && selectedPart.includes("Vượt chướng ngại vật") && (
                 <TopicChoseForPart2
