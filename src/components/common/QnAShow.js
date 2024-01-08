@@ -1,6 +1,6 @@
 import { IoReloadOutline } from 'react-icons/io5';
 
-const QnAShow = ({ question, answer, topic, type, index }) => {
+const QnAShow = ({ question, answer, explain, topic, type, index }) => {
     return (
         <div
             className={
@@ -28,7 +28,10 @@ const QnAShow = ({ question, answer, topic, type, index }) => {
             </div>
 
             <div className={'flex w-1/2 items-center justify-between px-2'}>
-                <div className={'w-2/5'}>{answer}</div>
+                <div className={'w-3/5'}>
+                    <p>{answer}</p>
+                    {explain && <p className='flex flex-col'><span className='text-primary'>Giải thích: </span>{explain}</p>}
+                    </div>
                 <div
                     className={
                         'flex items-center justify-center overflow-hidden rounded border-2 border-primary px-10'
@@ -46,6 +49,6 @@ const QnAShow = ({ question, answer, topic, type, index }) => {
             </div>
         </div>
     );
-}
+};
 
 export default QnAShow;

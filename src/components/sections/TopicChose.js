@@ -88,8 +88,8 @@ const TopicChose = ({ inputtedTags, setInputtedTags, isInput, setIsInput }) => {
                                 key={index}
                                 tagValue={e}
                                 bg={'bg-yellow-400'}
-                                inputtedTags={inputtedTags}
-                                setInputtedTags={setInputtedTags}
+                                tags={inputtedTags}
+                                setTags={setInputtedTags}
                                 input
                                 setIsInput={setIsInput}
                             />
