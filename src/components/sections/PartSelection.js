@@ -1,24 +1,7 @@
 import { Button, InputCheckbox } from '@/components/common/index';
 
 const PartSelection = ({ selectedPart, setSelectedPart }) => {
-    const parts = [
-        {
-            id: 1,
-            name: 'Khởi động',
-        },
-        {
-            id: 2,
-            name: 'Vượt chướng ngại vật',
-        },
-        {
-            id: 3,
-            name: 'Tăng tốc',
-        },
-        {
-            id: 4,
-            name: 'Về đích',
-        },
-    ];
+    const parts = ["Khởi động", "Vượt chướng ngại vật", "Tăng tốc", "Về đích"];
 
     return (
         <section className="flex h-screen w-full items-center justify-center ">
@@ -31,12 +14,18 @@ const PartSelection = ({ selectedPart, setSelectedPart }) => {
                         return (
                             <InputCheckbox
                                 key={index}
-                                value={e.name}
+                                value={e}
                                 selectedPart={selectedPart}
                                 setSelectedPart={setSelectedPart}
                             />
                         );
                     })}
+                    <InputCheckbox
+                        value={"Chọn tất cả"}
+                        selectedPart={selectedPart}
+                        setSelectedPart={setSelectedPart}
+                        parts={parts}
+                    />
                 </div>
                 <div className="ml-6 pt-2 font-roboto-slab font-medium text-gray-400"></div>
                 <Button

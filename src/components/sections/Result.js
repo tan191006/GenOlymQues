@@ -28,6 +28,7 @@ import { GrFormNextLink } from 'react-icons/gr';
                             key={index}
                             question={e.question}
                             answer={e.answer}
+                            explain={e.explain}
                             topic={e.topic}
                             type={e.type}
                             index={index}
@@ -36,14 +37,14 @@ import { GrFormNextLink } from 'react-icons/gr';
                 })}
             </div>
             <div className="flex w-full justify-end">
-                {part !== 'Part 4' && (
+                {part !== 'Về đích' && (
                     <Button
                         className={'mx-5 flex items-center justify-between'}
                         onClick={() => {
                             window.scrollBy(0, window.innerHeight - 100);
                         }}
                     >
-                        Next <GrFormNextLink />
+                        Tiếp theo <GrFormNextLink />
                     </Button>
                 )}
             </div>

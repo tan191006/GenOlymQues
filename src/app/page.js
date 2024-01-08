@@ -100,27 +100,45 @@ const data = {
     part4: [
         {
             question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
+                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
+            answer: 'a = 1',
+            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
+            topic: 'Toán 12',
         },
         {
             question:
-                'What is the difference between RAM and ROM in a computer system?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
+                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
+            answer: 'a = 1',
+            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
+            topic: 'Toán 12',
         },
         {
             question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
+                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
+            answer: 'a = 1',
+            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
+            topic: 'Toán 12',
         },
         {
             question:
-                'What is the difference between RAM and ROM in a computer system?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
+                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
+            answer: 'a = 1',
+            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
+            topic: 'Toán 12',
+        },
+        {
+            question:
+                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
+            answer: 'a = 1',
+            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
+            topic: 'Toán 12',
+        },
+        {
+            question:
+                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
+            answer: 'a = 1',
+            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
+            topic: 'Toán 12',
         },
     ],
 };
@@ -171,10 +189,10 @@ export default function Home() {
                     setTopicFP2={setTopicFP2}
                 />
             )}
-            {data.part1 && <Result part="Part 1" data={data.part1} />}
-            {data.part2 && <Result part={`Part 2: ${topicFP2}`} data={data.part2} />}
-            {data.part3 && <Result part="Part 3" data={data.part3} />}
-            {data.part4 && <Result part="Part 4" data={data.part4} />}
+            {data.part1 && <Result part="Khởi động" data={data.part1} />}
+            {data.part2 && <Result part={`Vượt chướng ngại vật: ${topicFP2}`} data={data.part2} />}
+            {data.part3 && <Result part="Tăng tốc" data={data.part3} />}
+            {data.part4 && <Result part="Về đích" data={data.part4} />}
             <div className="fixed bottom-0 right-0 left-0 flex justify-between items-center px-10 py-5">
                 <div className='flex'>
                     <Button
