@@ -1,4 +1,4 @@
-export const getWarmUpRoutePrompt = (topics) => `
+export const getWarmUpRoundPrompt = (topics) => `
 Bạn sẽ đóng vai trò là một phần mêm đề xuất câu hỏi cho cuộc thi "đường lên đỉnh Olympia" cho phần thi khởi động 
 
 Trước hết bạn phải hiểu về khái niệm: Chủ đề Olympia, nó sẽ gồm các phần:
@@ -69,4 +69,64 @@ Lưu ý:
 - Bạn không cần trình bày chi tiết các bước, hãy xử lý và trả về kết quả JSON cuối cùng.
 - Đảm bảo rằng mỗi topic đều đã được tạo câu hỏi tương ứng
 Input: ${topics}
+`
+
+export const getObstacleRoundPrompt = (key) => `
+Bạn sẽ đóng vai trò là một phần mêm đề xuất câu hỏi cho cuộc thi "đường lên đỉnh Olympia" cho phần thi vượt chướng ngại vật
+
+Người dùng sẽ đưa ra input, và bạn sẽ tuân theo các bước của tôi và đưa ra output như tôi yêu cầu
+- Ví dụ về input:
+    - “Văn học việt nam”
+    - “Văn học trung đại”
+    - “Toán học”
+
+Và bây giờ bạn sẽ suy nghĩ input của người dùng theo từng bước sau và không được hiển thị nó:
+Bước 1: Coi input là "lĩnh vực chính".
+Bước 2: Hãy tìm một chướng ngại vật đảm bảo các yêu câu sau:
+- chướng ngại vật là một cụm từ ngắn gọn, súc tích khoảng 2 đến 20 ký tự
+- chướng ngại vật phải là một khía cạnh hoặc một phần của "lĩnh vực chính", nhưng không phải là toàn bộ lĩnh vực đó.
+- chướng ngại vật phải là một cụm từ phổ biến với học sinh trung học phổ thông Việt Nam
+
+Bước 3: Tiếp theo bạn hãy tìm 5 từ khóa thỏa mãn các điều kiện sau:
+- Mỗi từ khóa phải khác biệt và không được lặp lại trong 5 câu hỏi.
+- từ khóa có thể là số, có thể là từ, cụm từ khoảng 1 đến 16 ký tự
+- 'Từ khóa' được chọn để tạo câu hỏi phải liên quan mật thiết đến 'chướng ngại vật' nhưng không được trùng hoặc chứa bất kỳ từ nào của 'chướng ngại vật'.
+- từ khóa phải là một cụm từ phổ biến với học sinh trung học phổ thông
+- Các từ khóa cần có khác nhau về cách mà nó liên quan tới chướng ngại vật: Ví dụ: chướng ngại vật là “ẩn dụ” thì từ khóa chỉ được chứa 1 trong 3 từ “Nhân hóa”, “Biểu cảm”, “So sánh” vì 3 từ này quá giống nhau và đều là biện pháp tu từ
+
+Sau khi suy nghĩ 4 bước trên, Hãy hiển thị Output gồm:
+- Hãy tạo ra 5 câu hỏi có đáp án là 5 từ khóa và hiển thị nó dưới dạng Json thỏa mãn các điều kiện sau:
+    + Mỗi câu hỏi phải có hình thức 'tìm đáp án đúng' với một câu trả lời cụ thể và rõ ràng.
+    + câu hỏi không được trùng bất kỳ từ nào trong chướng ngại vật
+    + câu hỏi phải ngắn gọn, trọng tâm, đảm bảo về quy tắc diễn đạt.
+    + Câu hỏi phải phù hợp với học sinh trung học phổ thông Việt Nam
+
+
+Sau đó, hãy trả về kết quả ở dạng JSON Format (chỉ cần trả về JSON, không cần trả về các thông tin khác) theo ví dụ mẫu sau:
+'''
+{
+    "final_topic": <chướng ngại vật>,
+    "questions": [
+        {
+            "id": 1,
+            "question": <câu hỏi 1>,
+            "answer": <đáp án 1>
+        },
+        {
+            "id": 2,
+            "question": <câu hỏi 2>,
+            "answer": <đáp án 2>
+        },
+        {
+            "id": 3,
+            "question": <câu hỏi 3>,
+            "answer": <đáp án 3>
+        },
+        ...
+    ]
+}
+'''
+Lưu ý: 
+- Bạn không cần trình bày chi tiết các bước, hãy xử lý và trả về kết quả JSON cuối cùng.
+Input: ${key}
 `
