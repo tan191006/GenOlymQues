@@ -10,7 +10,7 @@ import {
 import { Button } from '@/components/common/index';
 const XLSX = require("xlsx");
 
-const data = {
+const initData = {
     part1: [
         {
             id: 1,
@@ -168,8 +168,40 @@ export default function Home() {
     // select part to generate
     const [selectedPart, setSelectedPart] = useState([])
 
+    const [data, setData] = useState(initData || {});
+
     const getQuestion = async () => {
-        console.log(inputtedTags, selectedPart)
+        console.log(inputtedTags, selectedPart);
+
+        // map selectedPart to round   
+        const roundMap = {
+            "Khởi động": "WARM_UP",
+            "Vượt chướng ngại vật": "OBSTACLE",
+            "Về đích": "END",
+        };
+
+        // get round
+        const round = selectedPart.map((e) => roundMap[e]);
+
+        // request to get question
+        const res = await fetch("/api/quiz", {
+            method: "POST",
+            body: JSON.stringify({
+                topic: inputtedTags,
+                round: "WARM_UP",
+            }),
+        });
+
+        const dataRes = await res.json();
+        const questions = dataRes.questions;
+
+        const newData = {
+            part1: questions,
+        }
+
+        // set data
+        console.log(newData);
+        setData(newData);
     }
 
     return (

@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 
 import {
-	getWarnUpRoutePrompt
+	getWarmUpRoutePrompt
 } from './prompt';
 
 const API_KEY = process.env.OPENAI_API_KEY;
@@ -12,7 +12,7 @@ const openai = new OpenAI({
 
 const getPrompt = (topics, round) => {
 	const promptMap = {
-		"WARN_UP": getWarnUpRoutePrompt
+		"WARM_UP": getWarmUpRoutePrompt
 	};
 
 	return promptMap[round](topics);

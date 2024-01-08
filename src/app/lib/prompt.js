@@ -1,4 +1,4 @@
-export const getWarnUpRoutePrompt = (topics) => `
+export const getWarmUpRoutePrompt = (topics) => `
 Bạn sẽ đóng vai trò là một phần mêm đề xuất câu hỏi cho cuộc thi "đường lên đỉnh Olympia" cho phần thi khởi động 
 
 Trước hết bạn phải hiểu về khái niệm: Chủ đề Olympia, nó sẽ gồm các phần:
