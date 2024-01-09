@@ -56,20 +56,25 @@ export default function Home() {
         const roundArr = selectedPart.map((e) => ROUND_MAP[e]);
 
         const newData = { ...data };
-        for (const round of roundArr) {
-            // request to get question
-            const body = processRequestBody(round);
-            const res = await fetch("/api/quiz", {
+        const requestArr = roundArr.map((e) => {
+            const body = processRequestBody(e);
+            return fetch("/api/quiz", {
                 method: "POST",
                 body: JSON.stringify(body),
             });
+        });
+
+        const resArr = await Promise.all(requestArr);
+
+        // get data
+        for (let i = 0; i < resArr.length; i++) {
+            const res = resArr[i];
 
             const dataRes = await res.json();
             const questions = dataRes.questions;
-
-            newData[round] = questions;
+            
+            newData[roundArr[i]] = questions;
         }
-
         setData(newData);
     }
 

@@ -77,9 +77,9 @@ const TopicChoseForPart2 = ({ inputtedTags, dataPart1, topicFP2, setTopicFP2 , g
                             alert(
                                 'Hãy chọn chủ đề cho phần thi Vượt chướng ngại vật trước nhé!'
                             );
-                        } else if (dataPart1) {
+                        } else {
                             await getQuestion();
-                            scrollBy(0, window.innerHeight - 100);
+                            window.scrollBy(0, window.innerHeight - 100);
                         }
                     }}
                 />
