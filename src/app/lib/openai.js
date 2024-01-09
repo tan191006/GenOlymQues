@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 import {
 	getWarmUpRoundPrompt,
 	getObstacleRoundPrompt,
+	getEndRoundPrompt,
 } from './prompt';
 
 const API_KEY = process.env.OPENAI_API_KEY;
@@ -15,6 +16,7 @@ const getPrompt = (topics, round) => {
 	const promptMap = {
 		"WARM_UP": getWarmUpRoundPrompt,
 		"OBSTACLE": getObstacleRoundPrompt,
+		"END": getEndRoundPrompt,
 	};
 
 	return promptMap[round](topics);

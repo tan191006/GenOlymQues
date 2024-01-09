@@ -133,3 +133,79 @@ Lưu ý:
 - Bạn không cần trình bày chi tiết các bước, hãy xử lý và trả về kết quả JSON cuối cùng.
 Input: ${topics[0]}
 `
+export const getEndRoundPrompt = (topics) => `
+Bạn sẽ đóng vai trò là một phần mêm đề xuất câu hỏi cho cuộc thi "đường lên đỉnh Olympia" cho phần thi khởi động 
+
+Trước hết bạn phải hiểu về khái niệm: Chủ đề Olympia, nó sẽ gồm các phần: 
+- Toán, Lý, Hóa, Tiếng Anh, Văn, Sử, Địa, Sinh: Ở các chủ đề này sẽ bao gồm kiến thức trong sách giáo khoa từ lớp 8 cho đến giữa học kỳ 1 lớp 12
+- Thể thao, Hiểu biết chung, Lĩnh vực khác: gồm và chỉ gồm các thông tin mang tính cập nhật, hoặc các thông tin có thể được tìm thấy bởi học sinh (nhưng thông tin mà học sinh có thể đọc hiểu mà không cần phải là sinh viên đại học hay thạc sĩ, tiến sĩ mới có thể hiểu)
+
+Input là từ khóa
+- ví dụ
+    - "Toán 12", "Lí 11"
+    - "Hàm số"
+    - “Văn học trung đại”
+- người dùng có thể chọn nhiều từ khóa khác nhau cùng lúc
+
+Và bây giờ bạn sẽ suy nghĩ input của người dùng và không được hiển thị chúng theo từng bước sau: 
+- Bước 1: lọc từ khóa: những từ không có trong “Chủ đề Olympia” mà tôi đã chỉ cho bạn phía trên Ví dụ: Toán 13, Toán đại học, Lý thuyết đại học, tăng tốc,… sẽ mặc định là không tồn tại trong input và tiếp tục xử lý
+- Bước 2: phân loại từ khóa:
+    - Loại 1: Lĩnh vực/ khối lớp: ví dụ: Lý 11, hóa 12, Lĩnh vực khác, …
+    - Loại 2: Chuyên đề: ví dụ: Hàm số, văn học trung đại, …
+- Bước 3: Tìm liên kết của các từ khóa và đếm số lĩnh vực
+    - Bạn sẽ xem xét tính liên kết các từ khóa:  VD “hàm số” và “toán 12” sẽ liên quan đến nhau, và bạn bạn sẽ kết hợp nó thành 1 lĩnh vực: “chuyên đề hàm số toán 12”
+    - Với một từ khóa không có tính liên kết, nó sẽ được đếm là một lĩnh vực
+
+Bạn hãy đếm số lĩnh vực và đánh số các lĩnh vực bắt đầu từ 1
+
+Xét từng lĩnh vực từ lĩnh vực 1 đến hết, hãy hoàn thành tất cả các yêu cầu sau:
+
+Hãy tạo ra đủ 3 câu hỏi và đáp án thuộc lĩnh vực bạn đang xét thỏa mãn các yêu cầu sau và trình bày nó dưới dạng Json gồm số thứ tự, câu hỏi, đáp án, giải thích đáp án, chủ để, mức điểm ( trong mỗi lĩnh vực, 2 câu đầu tiên luôn là 20 điểm, câu còn lại 30 điểm):
+- Nội dung cần đảm bảo:
+    - Vùng kiến thức để ra câu hỏi sẽ tùy theo từng lĩnh vực:
+        - Toán: sẽ là các bài tập tính toán mẹo, suy luận cơ bản xoay quanh các số nguyên
+        - Lý, Hóa, Tiếng Anh, Sinh: các kiến thức cần sâu hơn, đòi hỏi học sinh hiểu rõ và ứng dụng được thì mới có thể trả lời câu hỏi. Vùng kiến thức vẫn sẽ nằm trong vùng kiến thức từ lớp tám đến giữa học kỳ 1 lớp 12.
+        - Văn, Sử, Địa: vùng kiến thức sẽ gồm những kiến thức đòi hỏi học sinh phải tìm hiểu kỹ mới biết được. Vùng kiến thức vẫn sẽ nằm trong vùng kiến thức từ lớp tám đến giữa học kỳ 1 lớp 12.
+        - Thể thao, Hiểu biết chung, Lĩnh vực khác: cần đưa câu hỏi chứa các thông tin tương đối không phổ biến nhưng vẫn phải có thể tiếp cận bởi học sinh, không được quá cao siêu.
+    - Câu hỏi cần tường đối dài, chi tiết và chứa nhiều thông tin hơn, khoảng 15 từ đến 40 từ
+    - Kiến thức cần phù hợp với học sinh trung học phổ thông ở Việt Nam
+    - Câu hỏi và đáp án cần đảm bảo các quy tắc diễn đạt
+    - đáp án phải diễn đạt ngắn gọn, chỉ chứa câu trả lời và có ít hơn 9 từ
+- Hình thức:
+    - 2 câu hỏi đầu tiên luôn là câu hỏi yêu cầu tìm đáp án đúng: Ví dụ: Ngày lễ nào là một trong những ngày lễ chính của Phật giáo, được tổ chức vào ngày rằm tháng Bảy âm lịch, trùng với lễ Xá tội vong nhân, ngày lễ này xuất phát từ sự tích về Đại Đức Mục Kiền Liên với lòng đại hiếu đã cứu mẹ của mình ra khỏi kiếp ngạ quỷ?
+    - Câu hỏi số 3 sẽ là câu hỏi yêu cầu điền vào chỗ trống: Ví dụ: Trong chùm thơ Thu của Nguyễn Khuyến, nếu vần “ao” là âm hưởng chủ đạo trong bài …, vần “oe” là âm hưởng chủ đạo trong bài …, thì vần “eo” là âm hưởng chủ đạo trong bài … Trong các dấu “…” lần lượt là các bài thơ nào?
+
+Vui lòng tạo ra 3 câu hỏi và đáp án cho mỗi lĩnh vực mà tôi yêu cầu. Số thứ tự, câu hỏi, đáp án, giải thích đáp án, chủ để và mức điểm cần được trình bày dưới dạng dữ liệu JSON. 
+'''
+{
+    "questions": [
+        {
+            "id": 1,
+            "question": <câu hỏi 1>,
+            "answer": <đáp án 1>
+			"explain": <giải thích đáp án 1>
+            "topic": <chủ đề tương ứng từ input>
+        },
+        {
+            "id": 2,
+            "question": <câu hỏi 2>,
+            "answer": <đáp án 2>
+			"explain": <giải thích đáp án 2>
+            "topic": <chủ đề tương ứng từ input>
+        },
+        {
+            "id": 3,
+            "question": <câu hỏi 3>,
+            "answer": <đáp án 3>
+			"explain": <giải thích đáp án 3>
+            "topic": <chủ đề tương ứng từ input>
+        },
+        ...
+    ]
+}
+'''
+Lưu ý: 
+- Bạn không cần trình bày chi tiết các bước, hãy xử lý và trả về kết quả JSON cuối cùng.
+- Đảm bảo rằng mỗi topic đều đã được tạo câu hỏi tương ứng
+Input: ${topics}
+`
