@@ -71,7 +71,7 @@ Lưu ý:
 Input: ${topics}
 `
 
-export const getObstacleRoundPrompt = (key) => `
+export const getObstacleRoundPrompt = (topics) => `
 Bạn sẽ đóng vai trò là một phần mêm đề xuất câu hỏi cho cuộc thi "đường lên đỉnh Olympia" cho phần thi vượt chướng ngại vật
 
 Người dùng sẽ đưa ra input, và bạn sẽ tuân theo các bước của tôi và đưa ra output như tôi yêu cầu
@@ -111,16 +111,19 @@ Sau đó, hãy trả về kết quả ở dạng JSON Format (chỉ cần trả 
             "id": 1,
             "question": <câu hỏi 1>,
             "answer": <đáp án 1>
+            topic: <chương ngại vật>
         },
         {
             "id": 2,
             "question": <câu hỏi 2>,
             "answer": <đáp án 2>
+            topic: <chương ngại vật>
         },
         {
             "id": 3,
             "question": <câu hỏi 3>,
             "answer": <đáp án 3>
+            topic: <chương ngại vật>
         },
         ...
     ]
@@ -128,5 +131,5 @@ Sau đó, hãy trả về kết quả ở dạng JSON Format (chỉ cần trả 
 '''
 Lưu ý: 
 - Bạn không cần trình bày chi tiết các bước, hãy xử lý và trả về kết quả JSON cuối cùng.
-Input: ${key}
+Input: ${topics[0]}
 `

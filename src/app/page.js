@@ -142,7 +142,7 @@ export default function Home() {
     const processRequestBody = (round) => {
         if (round === "OBSTACLE") {
             return {
-                topic: inputtedTags,
+                topic: [topicFP2],
                 chosenObstacle: topicFP2,
                 round,
             }
@@ -195,6 +195,7 @@ export default function Home() {
                     setInputtedTags={setInputtedTags}
                     topicFP2={topicFP2}
                     setTopicFP2={setTopicFP2}
+                    getQuestion={getQuestion}
                 />
             )}
             {data.WARM_UP && <Result part="Khởi động" data={data.WARM_UP} />}

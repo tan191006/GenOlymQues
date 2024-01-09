@@ -35,7 +35,9 @@ const PartSelection = ({ selectedPart, setSelectedPart, getQuestion }) => {
                                 'Hãy chọn vòng thi trước nhé!'
                             );
                         } else {
-                            await getQuestion();
+                            if (!selectedPart.includes("Vượt chướng ngại vật")) {
+                                await getQuestion();
+                            }
                             scrollBy(0, window.innerHeight - 100);
                         }
                     }}

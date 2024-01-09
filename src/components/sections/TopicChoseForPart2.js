@@ -6,7 +6,7 @@ import { TbReload } from 'react-icons/tb';
 import Image from 'next/image';
 import Img from '../../../public/image.png';
 
-const TopicChoseForPart2 = ({ inputtedTags, dataPart1, topicFP2, setTopicFP2 }) => {
+const TopicChoseForPart2 = ({ inputtedTags, dataPart1, topicFP2, setTopicFP2 , getQuestion}) => {
     const [tagsChosen, setTagsChosen] = useState([...inputtedTags]);
 
     function handleRandom() {
@@ -72,12 +72,13 @@ const TopicChoseForPart2 = ({ inputtedTags, dataPart1, topicFP2, setTopicFP2 }) 
                 <Button
                     value="Tiếp tục"
                     className="ml-6"
-                    onClick={() => {
+                    onClick={async () => {
                         if (!topicFP2) {
                             alert(
                                 'Hãy chọn chủ đề cho phần thi Vượt chướng ngại vật trước nhé!'
                             );
                         } else if (dataPart1) {
+                            await getQuestion();
                             scrollBy(0, window.innerHeight - 100);
                         }
                     }}
