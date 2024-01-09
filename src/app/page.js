@@ -8,6 +8,7 @@ import {
     TopicChoseForPart2
 } from "@/components/sections"
 import { Button } from '@/components/common/index';
+import { ROUND_MAP } from '@/app/enum.js';
 const XLSX = require("xlsx");
 
 const initData = {
@@ -159,48 +160,48 @@ export default function Home() {
         XLSX.writeFile(wb, "Data.xlsx")
     }
 
-    // input tags
     const [inputtedTags, setInputtedTags] = useState([]);
-    // input tags set Done
     const [isInput, setIsInput] = useState(false);
-    // part 2 topic
     const [topicFP2, setTopicFP2] = useState('');
-    // select part to generate
     const [selectedPart, setSelectedPart] = useState([])
 
     const [data, setData] = useState(initData || {});
 
-    const getQuestion = async () => {
-        console.log(inputtedTags, selectedPart);
 
-        // map selectedPart to round   
-        const roundMap = {
-            "Khởi động": "WARM_UP",
-            "Vượt chướng ngại vật": "OBSTACLE",
-            "Về đích": "END",
-        };
-
-        // get round
-        const round = selectedPart.map((e) => roundMap[e]);
-
-        // request to get question
-        const res = await fetch("/api/quiz", {
-            method: "POST",
-            body: JSON.stringify({
+    const processRequestBody = (round) => {
+        if (round === "OBSTACLE") {
+            return {
                 topic: inputtedTags,
-                round: "WARM_UP",
-            }),
-        });
-
-        const dataRes = await res.json();
-        const questions = dataRes.questions;
-
-        const newData = {
-            part1: questions,
+                chosenObstacle: topicFP2,
+                round,
+            }
         }
 
-        // set data
-        setData(newData);
+        return {
+            topic: inputtedTags,
+            round,
+        }
+    };
+
+
+    const getQuestion = async () => {
+        // get round
+        const roundArr = selectedPart.map((e) => ROUND_MAP[e]);
+
+        for (const round in roundArr) {
+            // request to get question
+            const body = processRequestBody(roundArr[round]);
+            const res = await fetch("/api/quiz", {
+                method: "POST",
+                body: JSON.stringify(body),
+            });
+
+            const dataRes = await res.json();
+            const questions = dataRes.questions;
+
+            data[round] = questions;
+        }
+        setData(data);
     }
 
     return (
