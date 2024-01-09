@@ -9,111 +9,7 @@ import {
 } from "@/components/sections"
 import { Button } from '@/components/common/index';
 import { ROUND_MAP } from '@/app/enum.js';
-import { CiKeyboard } from 'react-icons/ci';
 const XLSX = require("xlsx");
-
-const initData = {
-    WARM_UP: [
-        {
-            id: 1,
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-        },
-        {
-            id: 2,
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-        },
-        {
-            id: 3,
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-        },
-        {
-            id: 4,
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-        },
-    ],
-    OBSTACLE: [
-        {
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-        },
-        {
-            question:
-                'What is the difference between RAM and ROM in a computer system?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-        },
-        {
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-        },
-        {
-            question:
-                'What is the difference between RAM and ROM in a computer system?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-        },
-    ],
-    END: [
-        {
-            question:
-                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
-            answer: 'a = 1',
-            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
-            topic: 'Toán 12',
-        },
-        {
-            question:
-                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
-            answer: 'a = 1',
-            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
-            topic: 'Toán 12',
-        },
-        {
-            question:
-                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
-            answer: 'a = 1',
-            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
-            topic: 'Toán 12',
-        },
-        {
-            question:
-                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
-            answer: 'a = 1',
-            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
-            topic: 'Toán 12',
-        },
-        {
-            question:
-                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
-            answer: 'a = 1',
-            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
-            topic: 'Toán 12',
-        },
-        {
-            question:
-                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
-            answer: 'a = 1',
-            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
-            topic: 'Toán 12',
-        },
-    ],
-};
 
 export default function Home() {  
     //export data to excel
@@ -136,7 +32,7 @@ export default function Home() {
     const [topicFP2, setTopicFP2] = useState('');
     const [selectedPart, setSelectedPart] = useState([])
 
-    const [data, setData] = useState(initData || {});
+    const [data, setData] = useState({});
 
 
     const processRequestBody = (round) => {
