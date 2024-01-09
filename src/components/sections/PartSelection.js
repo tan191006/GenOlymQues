@@ -1,7 +1,7 @@
 import { Button, InputCheckbox } from '@/components/common/index';
 
 const PartSelection = ({ selectedPart, setSelectedPart, getQuestion }) => {
-    const parts = ["Khởi động", "Vượt chướng ngại vật", "Tăng tốc", "Về đích"];
+    const parts = ["Khởi động", "Vượt chướng ngại vật", "Về đích"];
 
     return (
         <section className="flex h-screen w-full items-center justify-center ">
