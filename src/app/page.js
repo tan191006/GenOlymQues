@@ -9,6 +9,8 @@ import {
 } from "@/components/sections"
 import { Button } from '@/components/common/index';
 import { ROUND_MAP } from '@/app/enum.js';
+import Swal from 'sweetalert2';
+
 const XLSX = require("xlsx");
 
 export default function Home() {  
@@ -52,6 +54,18 @@ export default function Home() {
 
 
     const getQuestion = async () => {
+        // show loading alert
+        Swal.fire({
+            title: 'Đang tạo câu hỏi',
+            html: 'Vui lòng đợi trong giây lát',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            didOpen: () => {
+                Swal.showLoading()
+            },
+        });
+
         // get round
         const roundArr = selectedPart.map((e) => ROUND_MAP[e]);
 
@@ -76,6 +90,9 @@ export default function Home() {
             newData[roundArr[i]] = questions;
         }
         setData(newData);
+
+        // close loading alert
+        Swal.close();
     }
 
     return (
