@@ -9,10 +9,11 @@ import {
 } from "@/components/sections"
 import { Button } from '@/components/common/index';
 import { ROUND_MAP } from '@/app/enum.js';
+import { CiKeyboard } from 'react-icons/ci';
 const XLSX = require("xlsx");
 
 const initData = {
-    part1: [
+    WARM_UP: [
         {
             id: 1,
             question:
@@ -42,7 +43,7 @@ const initData = {
             topic: 'HTML',
         },
     ],
-    part2: [
+    OBSTACLE: [
         {
             question:
                 'What is the role of a firewall in computer security?',
@@ -68,37 +69,7 @@ const initData = {
             topic: 'HTML',
         },
     ],
-    part3: [
-        {
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-            type: '30',
-        },
-        {
-            question:
-                'What is the difference between RAM and ROM in a computer system?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-            type: '20',
-        },
-        {
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-            type: '30',
-        },
-        {
-            question:
-                'What is the difference between RAM and ROM in a computer system?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
-            type: '20',
-        },
-    ],
-    part4: [
+    END: [
         {
             question:
                 'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
@@ -188,9 +159,10 @@ export default function Home() {
         // get round
         const roundArr = selectedPart.map((e) => ROUND_MAP[e]);
 
-        for (const round in roundArr) {
+        const newData = { ...data };
+        for (const round of roundArr) {
             // request to get question
-            const body = processRequestBody(roundArr[round]);
+            const body = processRequestBody(round);
             const res = await fetch("/api/quiz", {
                 method: "POST",
                 body: JSON.stringify(body),
@@ -199,9 +171,10 @@ export default function Home() {
             const dataRes = await res.json();
             const questions = dataRes.questions;
 
-            data[round] = questions;
+            newData[round] = questions;
         }
-        setData(data);
+
+        setData(newData);
     }
 
     return (
@@ -217,17 +190,16 @@ export default function Home() {
             )}
             {isInput && selectedPart.includes("Vượt chướng ngại vật") && (
                 <TopicChoseForPart2
-                    dataPart1={data.part1}
+                    dataPart1={data.WARM_UP}
                     inputtedTags={inputtedTags}
                     setInputtedTags={setInputtedTags}
                     topicFP2={topicFP2}
                     setTopicFP2={setTopicFP2}
                 />
             )}
-            {data.part1 && <Result part="Khởi động" data={data.part1} />}
-            {data.part2 && <Result part={`Vượt chướng ngại vật: ${topicFP2}`} data={data.part2} />}
-            {data.part3 && <Result part="Tăng tốc" data={data.part3} />}
-            {data.part4 && <Result part="Về đích" data={data.part4} />}
+            {data.WARM_UP && <Result part="Khởi động" data={data.WARM_UP} />}
+            {data.OBSTACLE && <Result part={`Vượt chướng ngại vật: ${topicFP2}`} data={data.OBSTACLE} />}
+            {data.END && <Result part="Về đích" data={data.END} />}
             <div className="fixed bottom-0 right-0 left-0 flex justify-between items-center px-10 py-5">
                 <div className='flex'>
                     <Button
