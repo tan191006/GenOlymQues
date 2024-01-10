@@ -1,5 +1,3 @@
-import { IoReloadOutline } from 'react-icons/io5';
-
 const QnAShow = ({ question, answer, explain, topic, type, index }) => {
     return (
         <div
@@ -39,13 +37,6 @@ const QnAShow = ({ question, answer, explain, topic, type, index }) => {
                 >
                     {topic}
                 </div>
-                <button
-                    className={
-                        'flex h-10 w-10 items-center justify-center rounded border-2 border-primary text-2xl text-primary'
-                    }
-                >
-                    <IoReloadOutline />
-                </button>
             </div>
         </div>
     );

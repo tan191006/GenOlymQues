@@ -1,5 +1,7 @@
 import { Button, QnAShow } from '@/components/common/index';
 import { GrFormNextLink } from 'react-icons/gr';
+import { IoReloadOutline } from 'react-icons/io5';
+
 
  const Result = ({ part, data }) => {
     return (
@@ -11,12 +13,18 @@ import { GrFormNextLink } from 'react-icons/gr';
         >
             <h1
                 className={
-                    'ml-4 pb-5 text-start font-roboto-slab text-5xl font-bold text-primary'
+                    'ml-4 pb-5 text-start font-roboto-slab text-5xl font-bold text-primary inline-flex items-center'
                 }
             >
-                {part}
+                <button
+                    className={
+                        'flex h-10 w-10 items-center justify-center rounded border-2 border-primary text-2xl text-primary'
+                    }
+                >
+                    <IoReloadOutline />
+                </button>
+                <p className="ml-5">{part}</p>
             </h1>
-
             <div
                 className={
                     'my-2 max-h-[60%] w-full overflow-auto px-2 text-white'
