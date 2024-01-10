@@ -16,27 +16,24 @@ const initData = {
     WARM_UP: [
         {
             id: 1,
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
+            question:'Câu hỏi 1',
+            answer: 'Đáp án 1',
+            topic: 'Chủ đề 1',
         },
     ],
     OBSTACLE: [
         {
-            question:
-                'What is the role of a firewall in computer security?',
-            answer: 'Lorem lorem',
-            topic: 'HTML',
+            question:'Câu hỏi 1',
+            answer: 'Đáp án 1',
+            topic: 'Chủ đề 1',
         },
     ],
     END: [
         {
-            question:
-                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
-            answer: 'a = 1',
-            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
-            topic: 'Toán 12',
+            question:'Câu hỏi 1',
+            answer: 'Đáp án 1',
+            explain: 'Giải thích 1',
+            topic: 'Chủ đề 1',
         },
     ],
 };
