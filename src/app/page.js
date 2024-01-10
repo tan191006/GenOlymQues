@@ -61,6 +61,7 @@ export default function Home() {
     const [isInput, setIsInput] = useState(false);
     const [topicFP2, setTopicFP2] = useState('');
     const [selectedPart, setSelectedPart] = useState([])
+    const [isLoading, setIsLoading] = useState(false);
 
     const [data, setData] = useState(initData || {});
 
@@ -90,7 +91,7 @@ export default function Home() {
         //     allowEscapeKey: false,
         //     allowEnterKey: false,
         // })
-
+        setIsLoading(true);
         const roundArr = selectedPart.map((e) => ROUND_MAP[e]);
 
         const newData = { ...data };
@@ -115,10 +116,17 @@ export default function Home() {
         }
         setData(newData);
         // Swal.close();
+
+        setIsLoading(false);
     }
 
     return (
         <div className="relative px-40 ">
+            {isLoading && (
+                <div className="fixed top-0 left-0 right-0 bottom-0 bg-white flex justify-center items-center z-50 opacity-60">
+                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+                </div>
+            )}
             <TopicChose
                 inputtedTags={inputtedTags}
                 setInputtedTags={setInputtedTags}
