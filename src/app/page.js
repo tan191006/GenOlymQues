@@ -77,8 +77,7 @@ export default function Home() {
         }
     };
 
-
-    const getQuestion = async () => {
+    const getQuestion = async (keep=false, part) => {
         // Swal.fire({
         //     title: 'Đang tạo câu hỏi...',
         //     didOpen: () => {
@@ -89,9 +88,16 @@ export default function Home() {
         //     allowEnterKey: false,
         // })
         setIsLoading(true);
-        const roundArr = selectedPart.map((e) => ROUND_MAP[e]);
+        let roundArr = selectedPart.map((e) => ROUND_MAP[e]);
+        if (part) {
+            roundArr = [part];
+        }
+        
+        let newData = {};
+        if (keep) {
+            newData = { ...data };
+        }
 
-        const newData = { ...data };
         const requestArr = roundArr.map((e) => {
             const body = processRequestBody(e);
             return fetch("/api/quiz", {
@@ -143,9 +149,9 @@ export default function Home() {
                     getQuestion={getQuestion}
                 />
             )}
-            {data.WARM_UP && <Result part="Khởi động" data={data.WARM_UP} />}
-            {data.OBSTACLE && <Result part={`Vượt chướng ngại vật: ${topicFP2}`} data={data.OBSTACLE} />}
-            {data.END && <Result part="Về đích" data={data.END} />}
+            {data.WARM_UP && <Result title="Khởi động" data={data.WARM_UP} getQuestion={getQuestion} part="WARM_UP" />}
+            {data.OBSTACLE && <Result title={`Vượt chướng ngại vật: ${topicFP2}`} data={data.OBSTACLE} getQuestion={getQuestion} part="OBSTACLE" />}
+            {data.END && <Result title="Về đích" data={data.END} getQuestion={getQuestion} part="END" />}
             <div className="fixed bottom-0 right-0 left-0 flex justify-between items-center px-10 py-5">
                 <div className='flex'>
                     <Button

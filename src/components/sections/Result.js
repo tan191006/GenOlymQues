@@ -3,7 +3,7 @@ import { GrFormNextLink } from 'react-icons/gr';
 import { IoReloadOutline } from 'react-icons/io5';
 
 
- const Result = ({ part, data }) => {
+ const Result = ({ title, data, getQuestion, part }) => {
     return (
         <section
             id={part}
@@ -20,10 +20,13 @@ import { IoReloadOutline } from 'react-icons/io5';
                     className={
                         'flex h-10 w-10 items-center justify-center rounded border-2 border-primary text-2xl text-primary'
                     }
+                    onClick={async () => {
+                        await getQuestion(true, part);
+                    }}
                 >
                     <IoReloadOutline />
                 </button>
-                <p className="ml-5">{part}</p>
+                <p className="ml-5">{title}</p>
             </h1>
             <div
                 className={
