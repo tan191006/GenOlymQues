@@ -9,9 +9,37 @@ import {
 } from "@/components/sections"
 import { Button } from '@/components/common/index';
 import { ROUND_MAP } from '@/app/enum.js';
-import Swal from 'sweetalert2';
-
 const XLSX = require("xlsx");
+// import Swal from 'sweetalert2';
+
+const initData = {
+    WARM_UP: [
+        {
+            id: 1,
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+    ],
+    OBSTACLE: [
+        {
+            question:
+                'What is the role of a firewall in computer security?',
+            answer: 'Lorem lorem',
+            topic: 'HTML',
+        },
+    ],
+    END: [
+        {
+            question:
+                'Cho hàm số bậc hai y = ax^2 + bx + c. Nếu đỉnh của parabol này là (1, -3) và nó cắt trục y tại điểm có tung độ 2, xác định hệ số a.',
+            answer: 'a = 1',
+            explain: 'Sử dụng công thức tính đỉnh và điểm cắt trục tung của parabol.',
+            topic: 'Toán 12',
+        },
+    ],
+};
 
 export default function Home() {  
     //export data to excel
@@ -34,8 +62,7 @@ export default function Home() {
     const [topicFP2, setTopicFP2] = useState('');
     const [selectedPart, setSelectedPart] = useState([])
 
-    const [data, setData] = useState({});
-
+    const [data, setData] = useState(initData || {});
 
     const processRequestBody = (round) => {
         if (round === "OBSTACLE") {
@@ -54,19 +81,16 @@ export default function Home() {
 
 
     const getQuestion = async () => {
-        // show loading alert
-        Swal.fire({
-            title: 'Đang tạo câu hỏi',
-            html: 'Vui lòng đợi trong giây lát',
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            allowEnterKey: false,
-            didOpen: () => {
-                Swal.showLoading()
-            },
-        });
+        // Swal.fire({
+        //     title: 'Đang tạo câu hỏi...',
+        //     didOpen: () => {
+        //         Swal.showLoading()
+        //     },
+        //     allowOutsideClick: false,
+        //     allowEscapeKey: false,
+        //     allowEnterKey: false,
+        // })
 
-        // get round
         const roundArr = selectedPart.map((e) => ROUND_MAP[e]);
 
         const newData = { ...data };
@@ -90,9 +114,7 @@ export default function Home() {
             newData[roundArr[i]] = questions;
         }
         setData(newData);
-
-        // close loading alert
-        Swal.close();
+        // Swal.close();
     }
 
     return (

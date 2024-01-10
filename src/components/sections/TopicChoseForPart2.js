@@ -79,7 +79,7 @@ const TopicChoseForPart2 = ({ inputtedTags, dataPart1, topicFP2, setTopicFP2 , g
                             );
                         } else {
                             await getQuestion();
-                            window.scrollBy(0, windowD.innerHeight - 100);
+                            window.scrollBy(0, window.innerHeight - 100);
                         }
                     }}
                 />
