@@ -13,29 +13,29 @@ const XLSX = require("xlsx");
 // import Swal from 'sweetalert2';
 
 const initData = {
-    WARM_UP: [
-        {
-            id: 1,
-            question:'Câu hỏi 1',
-            answer: 'Đáp án 1',
-            topic: 'Chủ đề 1',
-        },
-    ],
-    OBSTACLE: [
-        {
-            question:'Câu hỏi 1',
-            answer: 'Đáp án 1',
-            topic: 'Chủ đề 1',
-        },
-    ],
-    END: [
-        {
-            question:'Câu hỏi 1',
-            answer: 'Đáp án 1',
-            explain: 'Giải thích 1',
-            topic: 'Chủ đề 1',
-        },
-    ],
+    // WARM_UP: [
+    //     {
+    //         id: 1,
+    //         question:'Câu hỏi 1',
+    //         answer: 'Đáp án 1',
+    //         topic: 'Chủ đề 1',
+    //     },
+    // ],
+    // OBSTACLE: [
+    //     {
+    //         question:'Câu hỏi 1',
+    //         answer: 'Đáp án 1',
+    //         topic: 'Chủ đề 1',
+    //     },
+    // ],
+    // END: [
+    //     {
+    //         question:'Câu hỏi 1',
+    //         answer: 'Đáp án 1',
+    //         explain: 'Giải thích 1',
+    //         topic: 'Chủ đề 1',
+    //     },
+    // ],
 };
 
 export default function Home() {  
@@ -119,7 +119,8 @@ export default function Home() {
         }
         setData(newData);
         // Swal.close();
-
+        // Delay 2s to close loading
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         setIsLoading(false);
     }
 
