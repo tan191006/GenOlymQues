@@ -21,6 +21,12 @@ import { IoReloadOutline } from 'react-icons/io5';
                         'flex h-10 w-10 items-center justify-center rounded border-2 border-primary text-2xl text-primary'
                     }
                     onClick={async () => {
+                        // Show confirm dialog
+                        const confirm = window.confirm(
+                            'Bạn có chắc chắn muốn tạo lại câu hỏi không?'
+                        );
+                        if (!confirm) return;
+
                         await getQuestion(true, part);
                     }}
                 >
