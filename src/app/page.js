@@ -106,22 +106,28 @@ export default function Home() {
             });
         });
 
-        const resArr = await Promise.all(requestArr);
+        // handle error
+        try {
+            const resArr = await Promise.all(requestArr);
 
-        // get data
-        for (let i = 0; i < resArr.length; i++) {
-            const res = resArr[i];
-
-            const dataRes = await res.json();
-            const questions = dataRes.questions;
-            
-            newData[roundArr[i]] = questions;
+            // get data
+            for (let i = 0; i < resArr.length; i++) {
+                const res = resArr[i];
+    
+                const dataRes = await res.json();
+                const questions = dataRes.questions;
+                
+                newData[roundArr[i]] = questions;
+            }
+            setData(newData);
+            // Swal.close();
+            // Delay 2s to close loading
+            await new Promise((resolve) => setTimeout(resolve, 2000));
+            setIsLoading(false);
+        } catch (error) {
+            window.alert("Có lỗi xảy ra, vui lòng thử lại!");
+            setIsLoading(false);
         }
-        setData(newData);
-        // Swal.close();
-        // Delay 2s to close loading
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        setIsLoading(false);
     }
 
     return (
