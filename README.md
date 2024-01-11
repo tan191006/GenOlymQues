@@ -1,6 +1,6 @@
 # GenOlymQues
 
-A web application designed to enhance the question-creation process for one of Vietnam's most prestigious competitions, "Đường lên đỉnh Olympia". This application leverages the advanced capabilities of OpenAI's ChatGPT to generate questions suitable for the competition's environment.
+A web application designed to enhance the question-creation process for one of Vietnam's most prestigious competitions, "Road To Olympia". This application leverages the advanced capabilities of OpenAI's ChatGPT to generate questions suitable for the competition's criteria.
 
 ## Technologies
 - NextJS 14
